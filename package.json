@@ -4,8 +4,16 @@
   "description": "Mi primer proyecto de Node",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sofysha91/KodemiaBackend"
+  },
+  "author": "sofy.hernandeza@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0"
+  }
 }

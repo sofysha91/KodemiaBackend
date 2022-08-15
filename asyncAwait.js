@@ -3,6 +3,8 @@
  * Async -> Cuando vamos a hacer una funcion asyncrona
  * Await -> va dentro de esa funcion que se declaron como asincrona
  * 
+ * Siempre que se usa async await, se usa try-catch
+ * 
  * Sintaxis
  */
 
@@ -172,13 +174,26 @@ const decorar = (pastel) => {
 }
 
 const hacerPastel = async () => {
-    const receta = await leerReceta({...pastel});
-    const ingredientes = await conseguirIngredientes({...receta});
-    const masa = await prepararMasa({...ingredientes});
-    const pastelHorneado = await hornear({...masa});
-    const pastelTerminado = await decorar({...pastelHorneado});
 
-    console.log("Pastel terminado", pastelTerminado)
+    try{
+        const receta = await leerReceta({...pastel});
+        const ingredientes = await conseguirIngredientes({...receta});
+        const masa = await prepararMasa({...ingredientes});
+        const pastelHorneado = await hornear({...masa});
+        const pastelTerminado = await decorar({...pastelHorneado});
+
+        console.log("Pastel terminado dentro de la funcion", pastelTerminado);
+        return pastelTerminado;
+    }
+    catch(error){
+        console.log("Error:", error);
+    }
 }
 
-hacerPastel();
+const pastelTerminado = hacerPastel()
+.then((pastel) => {
+    console.log("Pastel terminado fuera de la funcion", pastel);
+})
+.catch((error) => {
+    console.log("Error:", error);
+});
